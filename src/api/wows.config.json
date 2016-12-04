@@ -1,0 +1,106 @@
+[
+	"api.worldofwarships.ru/wows",
+	{
+		"account": [
+			"account",
+			{
+				"players": {
+					"url": "list",
+					"interval": 60000
+				},
+				"player": {
+					"url": "info"
+				},
+				"achievements": {
+					"url": "achievements"
+				},
+				"stats": {
+					"url": "statsbydate"
+				}
+			}
+		],
+		"ships": [
+			"ships",
+			{
+				"stats": {
+					"url": "stats"
+				}
+			}
+		],
+		"encyclopedia": [ 
+			"encyclopedia",
+			{
+				"ships": {
+					"url": "ships"
+				},
+				"shipinfo": {
+					"url": "shipprofile"
+				},
+				"shipModules": {
+					"url": "modules"
+				},
+				"exterior": {
+					"url": "exterior"
+				},
+				"shipUpgrades": {
+					"url": "upgrades"
+				},
+				"accountLevels": {
+					"url": "accountlevels"
+				},
+				"commanders": {
+					"url": "crews"
+				},
+				"commanderSkills": {
+					"url": "crewskills"
+				},
+				"commanderRanks": {
+					"url": "crewranks"
+				},
+				"battleTypes": {
+					"url": "battletypes"
+				},
+				"achievements": {
+					"url": "achievements"
+				},
+				"info": {
+					"url": "info"
+				}
+			}
+		],
+		"rating": [
+			"",
+			{
+				"types": {
+					"url": ""
+				},
+				"accounts": {
+					"url": ""
+				},
+				"neighbors": {
+					"url": ""
+				},
+				"top": {
+					"url": ""
+				},
+				"dates": {
+					"url": ""
+				}
+			}
+		],
+		"seasons": [
+			"seasons",
+			{
+				"info": {
+					"url": "info"
+				},
+				"shipstats": {
+					"url": "shipstats"
+				},
+				"accountinfo": {
+					"url": "accountinfo"
+				}
+			}
+		]
+	}
+]

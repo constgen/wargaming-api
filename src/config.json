@@ -1,0 +1,5 @@
+{
+	"defaultRequestMethod": "get",
+	"requestProtocol": "https",
+	"defaultUpdateInterval": 10000
+}
