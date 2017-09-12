@@ -4,8 +4,6 @@ var config = require('config')
 var protocol = require('../utils/protocol.js')
 var Endpoint = require('../types/endpoint.js')
 
-var apiUrl = protocol + '//api.worldoftanks.ru/wgn'
-
 function WargamingNet(realm){
 	var realmUrl = WargamingNet.realms[realm]
 	var apiUrl = protocol + '//' + realmUrl + '/wgn'

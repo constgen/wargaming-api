@@ -1,7 +1,7 @@
 {
 	"name": "wg",
 	"description": "",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"license": "MIT",
 	"author": "Constantine Genchevsky",
 	"main": "src/index.js",
@@ -27,7 +27,7 @@
 	},
 	"scripts": {
 		"test": "grunt test",
-		"start": "node src/index.js",
+		"start": "node demo/demo.js",
 		"build": "grunt build",
 		"code": "grunt code",
 		"live": "grunt live"

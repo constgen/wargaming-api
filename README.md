@@ -1,2 +1,2 @@
 # wargaming-api
-JavaScript SDK for Wargaming public API
+JavaScript library for Wargaming public API

@@ -722,21 +722,91 @@ $__System.registerDynamic('a', [], true, function ($__require, exports, module) 
 	};
 	return module.exports;
 });
-$__System.registerDynamic('b', ['a'], true, function ($__require, exports, module) {
+$__System.registerDynamic('b', [], true, function ($__require, exports, module) {
+	'use strict';
+
+	var define,
+	    global = this || self,
+	    GLOBAL = global;
+	module.exports = function getResponseHeaders(xhr) {
+		return {
+			'X-Api-Version': xhr.getResponseHeader('X-Api-Version'),
+			'ETag': xhr.getResponseHeader('ETag'),
+			'Content-Language': xhr.getResponseHeader('Content-Language')
+		};
+	};
+	return module.exports;
+});
+$__System.registerDynamic('c', ['b'], true, function ($__require, exports, module) {
+	'use strict';
+
+	var define,
+	    global = this || self,
+	    GLOBAL = global;
+	var getResponseHeaders = $__require('b');
+
+	module.exports = function (method, requestUrl, headers, payload) {
+		var header;
+		var xhr = new XMLHttpRequest();
+
+		xhr.open(method, requestUrl, true);
+		for (header in headers) {
+			xhr.setRequestHeader(header, headers[header]);
+		}
+		xhr.responseType = 'text';
+
+		return new Promise(function (resolve, reject) {
+			xhr.onreadystatechange = function () {
+				if (this.readyState !== this.DONE) return;
+
+				if (this.status >= 200 && this.status < 300 || this.status === 0 && this.responseText //local
+				) {
+						resolve({
+							body: this.responseText,
+							headers: getResponseHeaders(xhr)
+						});
+					} else if (this.status === 304) {
+					resolve({
+						body: undefined,
+						headers: getResponseHeaders(xhr)
+					});
+				} else {
+					reject(new Error(this.statusText));
+				}
+				this.onreadystatechange = null;
+				xhr = undefined;
+			};
+
+			try {
+				xhr.send(payload);
+			}
+			//crossdomain
+			catch (err) {
+				reject(err);
+			}
+		});
+	};
+	return module.exports;
+});
+$__System.registerDynamic('d', ['a', 'c'], true, function ($__require, exports, module) {
 	'use strict';
 
 	var define,
 	    global = this || self,
 	    GLOBAL = global;
 	var url = $__require('a');
+	var xhr = $__require('c');
 
 	function httpRequest(options, resolve, reject) {
-		var xhr = new XMLHttpRequest();
 		var payload;
 		var requestUrl = options.url;
 		var method = options.method;
 		var data = options.params;
 		var ETag = options.ETag;
+		var headers = {
+			'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+			'If-None-Match': ETag
+		};
 
 		switch (true) {
 			case !data:
@@ -749,37 +819,14 @@ $__System.registerDynamic('b', ['a'], true, function ($__require, exports, modul
 				requestUrl += url.format({ query: data });
 		}
 
-		try {
-			xhr.open(method, requestUrl, true);
-			xhr.responseType = 'text';
-			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-			xhr.setRequestHeader('If-None-Match', ETag);
-			xhr.onreadystatechange = function () {
-				if (this.readyState === this.DONE) {
-					if (this.status >= 200 && this.status < 300 || this.status === 0 && this.responseText //local
-					) {
-							var response = this.responseText;
-							response = response ? JSON.parse(response) : undefined;
-							if (response) {
-								response.ETag = xhr.getResponseHeader('ETag');
-							}
-							resolve(response);
-						} else if (this.status === 304) {
-						console.warn(this.status, this.statusText);
-						resolve(response);
-					} else {
-						reject(new Error(this.statusText));
-					}
-					this.onreadystatechange = null;
-					xhr = undefined;
-				}
-			};
-			xhr.send(payload);
-		}
-		//crossdomain
-		catch (err) {
-			reject(err);
-		}
+		xhr(method, requestUrl, headers, payload).then(function (response) {
+			var body = response.body ? JSON.parse(response.body) : undefined;
+
+			if (body) {
+				body.ETag = response.headers.ETag;
+			}
+			resolve(body);
+		}, reject);
 	}
 
 	module.exports = {
@@ -811,7 +858,7 @@ $__System.registerDynamic('b', ['a'], true, function ($__require, exports, modul
 	};
 	return module.exports;
 });
-$__System.registerDynamic('c', [], true, function ($__require, exports, module) {
+$__System.registerDynamic('e', [], true, function ($__require, exports, module) {
 	'use strict';
 
 	var define,
@@ -860,7 +907,7 @@ $__System.registerDynamic("3", [], true, function ($__require, exports, module) 
 	};
 	return module.exports;
 });
-$__System.registerDynamic('d', [], true, function ($__require, exports, module) {
+$__System.registerDynamic('f', [], true, function ($__require, exports, module) {
   'use strict';
 
   var define,
@@ -869,20 +916,16 @@ $__System.registerDynamic('d', [], true, function ($__require, exports, module) 
   module.exports = function () {};
   return module.exports;
 });
-$__System.registerDynamic('e', ['b', 'c', '3', 'd'], true, function ($__require, exports, module) {
+$__System.registerDynamic('10', ['d', 'e', '3', 'f'], true, function ($__require, exports, module) {
 	'use strict';
 
 	var define,
 	    global = this || self,
 	    GLOBAL = global;
-	var http = $__require('b');
-	var ApiError = $__require('c');
+	var http = $__require('d');
+	var ApiError = $__require('e');
 	var config = $__require('3');
-	var noop = $__require('d');
-
-	var ASYNC_TIMEOUT = 15;
-
-	var request = config.defaultRequestMethod.toUpperCase() === 'POST' ? http.post : http.get;
+	var noop = $__require('f');
 
 	function Resource(optoins) {
 		optoins = optoins || {};
@@ -898,146 +941,152 @@ $__System.registerDynamic('e', ['b', 'c', '3', 'd'], true, function ($__require,
 		this.fetchInterval = optoins.interval;
 	}
 
-	Resource.prototype.STATE = {
-		UNINTIALIZED: 0,
-		FETCHING: 1,
-		READY: 2,
-		ERROR: 3
-	};
+	Resource.prototype = {
+		constructor: Resource,
 
-	/**
-  * @private
-  */
-	Resource.prototype.startListening = function () {
-		var resource = this;
-		this.stopListening();
-		//start periodic requests
-		this.intervalId = setInterval(function () {
-			resource.get();
-		}, this.fetchInterval);
-	};
+		STATE: {
+			UNINTIALIZED: 0,
+			FETCHING: 1,
+			READY: 2,
+			ERROR: 3
+		},
 
-	/**
-  * @private
-  */
-	Resource.prototype.stopListening = function () {
-		clearInterval(this.intervalId);
-	};
+		/**
+   * @private
+   */
+		startListening: function () {
+			var resource = this;
+			this.stopListening();
+			//start periodic requests
+			this.intervalId = setInterval(function () {
+				resource.get();
+			}, this.fetchInterval);
+		},
 
-	/**
-  * @public
-  */
-	Resource.prototype.set = function (newValue) {
-		var i = -1;
-		var listeners = this.listeners;
-		var oldValue = this.value;
-		newValue = newValue || {};
+		/**
+   * @private
+   */
+		stopListening: function () {
+			clearInterval(this.intervalId);
+		},
 
-		this.state = this.STATE.READY;
-		this.value = newValue;
-		if ((oldValue && oldValue.ETag) !== newValue.ETag) {
-			while (++i in listeners) {
-				listeners[i](newValue);
-			}
-		}
-		return this;
-	};
+		/**
+   * @public
+   */
+		set: function (newValue) {
+			var i = -1;
+			var listeners = this.listeners;
+			var oldValue = this.value;
 
-	/**
-  * @public
-  */
-	Resource.prototype.get = function (callback, errorCallback) {
-		var resource = this;
-		callback = callback || noop;
-		errorCallback = errorCallback || noop;
-		resource.state = resource.STATE.FETCHING;
-
-		request({
-			url: this.url,
-			params: this.params,
-			ETag: this.value && this.value.ETag
-		}, function (response) {
-			if (response === undefined) {
-				response = resource.value;
-			}
-			if (response.status === 'ok') {
-				resource.set(response);
-				callback(response);
-			} else {
-				//api error
-				resource.state = resource.STATE.ERROR;
-				errorCallback(new ApiError(response.error));
-			}
-		}, function (err) {
-			//network error
-			resource.state = resource.STATE.READY;
-			errorCallback(err);
-		});
-
-		return this;
-	};
-
-	/**
-  * @public
-  */
-	Resource.prototype.subscribe = function (callback) {
-		var listeners = this.listeners;
-
-		if (typeof callback === 'function') {
-			if (!listeners.length) {
-				this.startListening();
-			}
-			listeners.push(callback);
-			switch (this.state) {
-				case this.STATE.UNINTIALIZED:
-					this.get();
-					break;
-				case this.STATE.READY:
-					this.get(callback);
-					break;
-				case this.STATE.ERROR:
-					break;
-			}
-		}
-
-		return this;
-	};
-
-	/**
-  * @public
-  */
-	Resource.prototype.unsubscribe = function (callback) {
-		var listeners = this.listeners;
-		//unsubscribe all
-		if (callback === undefined) {
-			listeners.length = 0;
-		}
-		//unsubscribe a certain listeners
-		else {
-				index = listeners.indexOf(callback);
-				while (~index) {
-					listeners.splice(index, 1);
-					index = listeners.indexOf(callback);
+			newValue = newValue || {};
+			this.state = this.STATE.READY;
+			this.value = newValue;
+			if ((oldValue && oldValue.ETag) !== newValue.ETag) {
+				while (++i in listeners) {
+					listeners[i](newValue);
 				}
 			}
-		//stop periodic requests if there are no listeners
-		if (!listeners.length) {
-			this.stopListening();
+			return this;
+		},
+
+		/**
+   * @public
+   */
+		get: function (callback, errorCallback) {
+			var resource = this;
+			var request = config.defaultRequestMethod.toUpperCase() === 'POST' ? http.post : http.get;
+
+			callback = callback || noop;
+			errorCallback = errorCallback || noop;
+			resource.state = resource.STATE.FETCHING;
+			request({
+				url: this.url,
+				params: this.params,
+				ETag: this.value && this.value.ETag
+			}, function (response) {
+				if (response === undefined) {
+					response = resource.value;
+				}
+				if (response.status === 'ok') {
+					resource.set(response);
+					callback(response);
+				} else {
+					//api error
+					resource.state = resource.STATE.ERROR;
+					errorCallback(new ApiError(response.error));
+				}
+			}, function (err) {
+				//network error
+				resource.state = resource.STATE.READY;
+				errorCallback(err);
+			});
+
+			return this;
+		},
+
+		/**
+   * @public
+   */
+		subscribe: function (callback) {
+			var listeners = this.listeners;
+
+			if (typeof callback === 'function') {
+				if (!listeners.length) {
+					this.startListening();
+				}
+				listeners.push(callback);
+				switch (this.state) {
+					case this.STATE.UNINTIALIZED:
+						this.get();
+						break;
+					case this.STATE.READY:
+						this.get(callback);
+						break;
+					case this.STATE.ERROR:
+						break;
+				}
+			}
+
+			return this;
+		},
+
+		/**
+   * @public
+   */
+		unsubscribe: function (callback) {
+			var index;
+			var listeners = this.listeners;
+			//unsubscribe all
+			if (callback === undefined) {
+				listeners.length = 0;
+			}
+			//unsubscribe a certain listeners
+			else {
+					index = listeners.indexOf(callback);
+					while (~index) {
+						listeners.splice(index, 1);
+						index = listeners.indexOf(callback);
+					}
+				}
+			//stop periodic requests if there are no listeners
+			if (!listeners.length) {
+				this.stopListening();
+			}
+			return this;
 		}
-		return this;
 	};
 
 	module.exports = Resource;
 	return module.exports;
 });
-$__System.registerDynamic('5', ['3', 'e'], true, function ($__require, exports, module) {
+$__System.registerDynamic('5', ['3', '10'], true, function ($__require, exports, module) {
     'use strict';
 
     var define,
         global = this || self,
         GLOBAL = global;
     var config = $__require('3');
-    var Resource = $__require('e');
+    var Resource = $__require('10');
 
     function Endpoint(endpointConfig) {
         endpointConfig = endpointConfig || {};
@@ -1054,7 +1103,7 @@ $__System.registerDynamic('5', ['3', 'e'], true, function ($__require, exports, 
     module.exports = Endpoint;
     return module.exports;
 });
-$__System.registerDynamic('f', ['3', '4', '5'], true, function ($__require, exports, module) {
+$__System.registerDynamic('11', ['3', '4', '5'], true, function ($__require, exports, module) {
 	'use strict';
 
 	var define,
@@ -1063,8 +1112,6 @@ $__System.registerDynamic('f', ['3', '4', '5'], true, function ($__require, expo
 	var config = $__require('3');
 	var protocol = $__require('4');
 	var Endpoint = $__require('5');
-
-	var apiUrl = protocol + '//api.worldoftanks.ru/wgn';
 
 	function WargamingNet(realm) {
 		var realmUrl = WargamingNet.realms[realm];
@@ -1181,7 +1228,7 @@ $__System.registerDynamic('f', ['3', '4', '5'], true, function ($__require, expo
 	module.exports = WargamingNet;
 	return module.exports;
 });
-$__System.registerDynamic('1', ['2', '6', '7', '8', '9', 'f'], true, function ($__require, exports, module) {
+$__System.registerDynamic('1', ['2', '6', '7', '8', '9', '11'], true, function ($__require, exports, module) {
     'use strict';
 
     var define,
@@ -1192,7 +1239,7 @@ $__System.registerDynamic('1', ['2', '6', '7', '8', '9', 'f'], true, function ($
     var Wotx = $__require('7');
     var Wows = $__require('8');
     var Wowp = $__require('9');
-    var Net = $__require('f');
+    var Net = $__require('11');
 
     module.exports = {
         version: '1.9.0',
