@@ -45,35 +45,6 @@ function WargamingNet(realm){
 				url: apiUrl + '/wargag/deletecomment'
 			})
 		},
-		league: {
-			list: endpoint({
-				url: apiUrl + '/league/leagues'
-			}),
-			tournaments: endpoint({
-				url: apiUrl + '/league/tournaments'
-			}),
-			grid: endpoint({
-				url: apiUrl + '/league/grid'
-			}),
-			tournamentMatches: endpoint({
-				url: apiUrl + '/league/matches'
-			}),
-			teams: endpoint({
-				url: apiUrl + '/league/teams'
-			}),
-			teamInfo: endpoint({
-				url: apiUrl + '/league/teaminfo'
-			}),
-			hallOfFame: endpoint({
-				url: apiUrl + '/league/halloffame'
-			}),
-			players: endpoint({
-				url: apiUrl + '/league/players'
-			}),
-			playerInfo: endpoint({
-				url: apiUrl + '/league/playerinfo'
-			})
-		},
 		clan: {
 			list: endpoint({
 				url: apiUrl + '/clans/list'

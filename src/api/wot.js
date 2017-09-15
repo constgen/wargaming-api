@@ -40,17 +40,8 @@ function WorldOfTanks(realm){
 			})
 		},
 		stronghold: {
-			info: endpoint({
-				url: apiUrl + '/stronghold/info'
-			}),
-			buildings: endpoint({
-				url: apiUrl + '/stronghold/buildings'
-			}),
-			playerStats: endpoint({
-				url: apiUrl + '/stronghold/accountstats'
-			}),
-			battles: endpoint({
-				url: apiUrl + '/stronghold/plannedbattles'
+			claninfo: endpoint({
+				url: apiUrl + '/stronghold/claninfo'
 			})
 		},
 		globalmap: {
@@ -130,6 +121,9 @@ function WorldOfTanks(realm){
 			vehicleProfile: endpoint({
 				url: apiUrl + '/encyclopedia/vehicleprofile'
 			}),
+			vehicleConfigurations: endpoint({
+				url: apiUrl + '/encyclopedia/vehicleprofiles'
+			}),
 			tankEngines: endpoint({
 				deprecated: true,
 				url: apiUrl + '/encyclopedia/tankengines'
@@ -177,18 +171,23 @@ function WorldOfTanks(realm){
 		},
 		rating: {
 			types: endpoint({
+				deprecated: true,
 				url: apiUrl + '/ratings/types'
 			}),
 			dates: endpoint({
+				deprecated: true,
 				url: apiUrl + '/ratings/dates'
 			}),
 			player: endpoint({
+				deprecated: true,
 				url: apiUrl + '/ratings/accounts'
 			}),
 			neighbors: endpoint({
+				deprecated: true,
 				url: apiUrl + '/ratings/neighbors'
 			}),
 			top: endpoint({
+				deprecated: true,
 				url: apiUrl + '/ratings/top'
 			})
 		},
@@ -215,17 +214,6 @@ function WorldOfTanks(realm){
 			}),
 			achievements: endpoint({
 				url: apiUrl + '/tanks/achievements'
-			})
-		},
-		teams: {
-			list: endpoint({
-				url: apiUrl + '/regularteams/list'
-			}),
-			info: endpoint({
-				url: apiUrl + '/regularteams/info'
-			}),
-			memberInfo: endpoint({
-				url: apiUrl + '/regularteams/memberinfo'
 			})
 		}
 	})

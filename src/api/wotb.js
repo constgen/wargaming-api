@@ -76,7 +76,7 @@ function WorldOfTanksBlitz(realm) {
 				url: apiUrl + '/tanks/achievements'
 			})
 		},
-		message: {
+		clanmessages: {
 			list: endpoint({
 				url: apiUrl + '/clanmessages/messages'
 			}),

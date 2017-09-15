@@ -8,8 +8,8 @@ var Wowp = require('./api/wowp.js')
 var Net = require('./api/net.js')
 
 module.exports = {
-    version: '1.9.0',
-    revision: 'april2016',
+    version: '1.14.0',
+    revision: 'aug2017',
     //Tanks
     WorldOfTanks: Wot,
     Wot: Wot,

@@ -43,11 +43,8 @@ function WorldOfWarships(realm){
 			shipModules: endpoint({
 				url: apiUrl + '/encyclopedia/modules'
 			}),
-			exterior: endpoint({
-				url: apiUrl + '/encyclopedia/exterior'
-			}),
-			shipUpgrades: endpoint({
-				url: apiUrl + '/encyclopedia/upgrades'
+			consumables: endpoint({
+				url: apiUrl + '/encyclopedia/consumables'
 			}),
 			accountLevels: endpoint({
 				url: apiUrl + '/encyclopedia/accountlevels'
@@ -69,6 +66,12 @@ function WorldOfWarships(realm){
 			}),
 			info: endpoint({
 				url: apiUrl + '/encyclopedia/info'
+			}),
+			collections: endpoint({
+				url: apiUrl + '/encyclopedia/collections'
+			}),
+			collectionItems: endpoint({
+				url: apiUrl + '/encyclopedia/collectioncards'
 			})
 		},
 		season: {
@@ -80,6 +83,20 @@ function WorldOfWarships(realm){
 			}),
 			playerStats: endpoint({
 				url: apiUrl + '/seasons/accountinfo'
+			})
+		},
+		clans: {
+			list: endpoint({
+				url: apiUrl + '/clans/list'
+			}),
+			info: endpoint({
+				url: apiUrl + '/clans/info'
+			}),
+			accountinfo: endpoint({
+				url: apiUrl + '/clans/accountinfo'
+			}),
+			glossary: endpoint({
+				url: apiUrl + '/clans/glossary'
 			})
 		}
 	})
