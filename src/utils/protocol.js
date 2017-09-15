@@ -1,5 +1,5 @@
 'use strict'
 
-var config = require('config')
+// module.exports = config.requestProtocol ? (config.requestProtocol + ':') : 'http:'
 
-module.exports = config.requestProtocol ? (config.requestProtocol + ':') : 'http:'
+module.exports = 'http:'

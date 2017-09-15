@@ -1,6 +1,6 @@
 'use strict'
 
-var getResponseHeaders = require('../../utils/get-response-headers.js')
+var getXhrHeaders = require('../../utils/get-xhr-headers.js')
 
 module.exports = function(method, requestUrl, headers, payload){
 	var header
@@ -22,13 +22,13 @@ module.exports = function(method, requestUrl, headers, payload){
 			) {
 				resolve({
 					body: this.responseText,
-					headers: getResponseHeaders(xhr)
+					headers: getXhrHeaders(xhr)
 				})
 			}
 			else if (this.status === 304) {
 				resolve({
 					body: undefined,
-					headers: getResponseHeaders(xhr)
+					headers: getXhrHeaders(xhr)
 				})
 			}
 			else {

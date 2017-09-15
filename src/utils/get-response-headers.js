@@ -1,9 +1,9 @@
 'use strict'
 
-module.exports = function getResponseHeaders(xhr){
+module.exports = function getResponseHeaders(response){
 	return {
-		'X-Api-Version': xhr.getResponseHeader('X-Api-Version'),
-		'ETag': xhr.getResponseHeader('ETag'),
-		'Content-Language': xhr.getResponseHeader('Content-Language')
+		'X-Api-Version': response.headers['x-api-version'],
+		'ETag': response.headers['etag'],
+		'Content-Language': response.headers['content-language']
 	}
 }

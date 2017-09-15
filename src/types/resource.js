@@ -2,7 +2,6 @@
 
 var http = require('../services/http/http-client.js')
 var ApiError = require('./api.error.js')
-var config = require('config')
 var noop = require('../utils/noop.js')
 
 function Resource(optoins) {
@@ -72,7 +71,8 @@ Resource.prototype = {
 	 */
 	get: function (callback, errorCallback) {
 		var resource = this
-		var request = (config.defaultRequestMethod.toUpperCase() === 'POST') ? http.post : http.get
+		// var request = (config.defaultRequestMethod.toUpperCase() === 'POST') ? http.post : http.get
+		var request = http.get
 
 		callback = callback || noop
 		errorCallback = errorCallback || noop

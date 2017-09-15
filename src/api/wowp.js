@@ -1,6 +1,5 @@
 'use strict'
 
-var config = require('config')
 var protocol = require('../utils/protocol.js')
 var Endpoint = require('../types/endpoint.js')
 

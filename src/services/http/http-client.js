@@ -2,6 +2,9 @@
 
 var url = require('../../utils/url.js')
 var xhr = require('./xhr.adapter.js')
+var http = require('./http.adapter.js')
+var nodejsEnv = Boolean(require('url').parse)
+var request = nodejsEnv ? http : xhr
 
 function httpRequest(options, resolve, reject) {
 	var payload
@@ -25,7 +28,7 @@ function httpRequest(options, resolve, reject) {
 			requestUrl += url.format({ query: data })
 	}
 
-	xhr(method, requestUrl, headers, payload).then(function (response) {
+	request(method, requestUrl, headers, payload).then(function (response) {
 		var body = response.body ? JSON.parse(response.body) : undefined
 		
 		if (body) {
