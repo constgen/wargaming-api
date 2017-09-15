@@ -4,14 +4,18 @@ var url = require('url')
 
 var getResponseHeaders = require('../../utils/get-response-headers.js')
 
-module.exports = function httpAdapter(method, requestUrl, headers, payload) {
+module.exports = function httpAdapter(options) {
+	var method = options.method
+	var requestUrl = options.url
+	var headers = options.headers
+	var payload = options.body
 	var location = url.parse(requestUrl)
 	var hostname = location.hostname
 	var port = location.port
 	var urlPath = location.path
 	var protocol = location.protocol
 	var http = require((protocol === 'https:') ? 'https' : 'http')
-	var options = {
+	var httpOptions = {
 		hostname: hostname,
 		port: port,
 		path: urlPath,
@@ -25,7 +29,7 @@ module.exports = function httpAdapter(method, requestUrl, headers, payload) {
 	}
 
 	return new Promise(function (resolve, reject) {
-		var request = http.request(options, function (response) {
+		var request = http.request(httpOptions, function (response) {
 			var body = []
 			
 			switch (response.statusCode){

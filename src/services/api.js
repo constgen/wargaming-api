@@ -1,13 +1,11 @@
 'use strict'
 
 var Resource = require('../types/resource.js')
+var http = require('../services/http/http-client.js')
 
 var service = {
     DEFAULT_UPDATE_INTERVAL: 10000,
-    METHOD: {
-        GET: 'GET',
-        POST: 'POST'
-    },
+    METHOD: http.METHOD,
 
     endpoint: function (config) {
         config = config || {}

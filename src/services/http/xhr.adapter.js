@@ -2,7 +2,11 @@
 
 var getXhrHeaders = require('../../utils/get-xhr-headers.js')
 
-module.exports = function(method, requestUrl, headers, payload){
+module.exports = function(options){
+	var method = options.method
+	var requestUrl = options.url
+	var headers = options.headers
+	var payload = options.body
 	var header
 	var xhr = new XMLHttpRequest()
 
@@ -22,13 +26,13 @@ module.exports = function(method, requestUrl, headers, payload){
 			) {
 				resolve({
 					body: this.responseText,
-					headers: getXhrHeaders(xhr)
+					headers: getXhrHeaders(this)
 				})
 			}
 			else if (this.status === 304) {
 				resolve({
 					body: undefined,
-					headers: getXhrHeaders(xhr)
+					headers: getXhrHeaders(this)
 				})
 			}
 			else {
@@ -36,7 +40,6 @@ module.exports = function(method, requestUrl, headers, payload){
 			}
 			this.onreadystatechange = null
 			xhr = undefined
-			
 		}
 
 		try {

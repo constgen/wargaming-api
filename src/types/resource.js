@@ -3,10 +3,8 @@
 var http = require('../services/http/http-client.js')
 var ApiError = require('./api.error.js')
 var noop = require('../utils/noop.js')
-var api
 
 function Resource(options) {
-	api = api || require('../services/api.js')
 	options = options || {}
 	if (options.deprecated) {
 		console.warn(options.url + ' resource is deprecated')
@@ -39,7 +37,7 @@ Resource.prototype = {
 		this.stopListening()
 		//start periodic requests
 		this.intervalId = setInterval(function () {
-			resource.options()
+			resource.get()
 		}, this.fetchInterval)
 	},
 
@@ -74,13 +72,13 @@ Resource.prototype = {
 	 */
 	get: function (callback, errorCallback) {
 		var resource = this
-		var request = (this.method === api.METHOD.POST) ? http.post : http.get
 
 		callback = callback || noop
 		errorCallback = errorCallback || noop
 		resource.state = resource.STATE.FETCHING
-		request({
+		http.request({
 			url: this.url,
+			method: this.method,
 			params: this.params,
 			ETag: this.value && this.value.ETag
 		}, function (response) {
