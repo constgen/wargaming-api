@@ -3,19 +3,22 @@
 var http = require('../services/http/http-client.js')
 var ApiError = require('./api.error.js')
 var noop = require('../utils/noop.js')
+var api
 
-function Resource(optoins) {
-	optoins = optoins || {}
-	if (optoins.deprecated) {
-		console.warn(optoins.url + ' resource is deprecated')
+function Resource(options) {
+	api = api || require('../services/api.js')
+	options = options || {}
+	if (options.deprecated) {
+		console.warn(options.url + ' resource is deprecated')
 	}
-	this.url = optoins.url
-	this.params = optoins.params
+	this.url = options.url
+	this.method = options.method
+	this.params = options.params
 	this.listeners = []
 	this.value = undefined
 	this.state = this.STATE.UNINTIALIZED
 	this.intervalId = -1
-	this.fetchInterval = optoins.interval
+	this.fetchInterval = options.interval
 }
 
 Resource.prototype = {
@@ -36,7 +39,7 @@ Resource.prototype = {
 		this.stopListening()
 		//start periodic requests
 		this.intervalId = setInterval(function () {
-			resource.get()
+			resource.options()
 		}, this.fetchInterval)
 	},
 
@@ -71,8 +74,7 @@ Resource.prototype = {
 	 */
 	get: function (callback, errorCallback) {
 		var resource = this
-		// var request = (config.defaultRequestMethod.toUpperCase() === 'POST') ? http.post : http.get
-		var request = http.get
+		var request = (this.method === api.METHOD.POST) ? http.post : http.get
 
 		callback = callback || noop
 		errorCallback = errorCallback || noop

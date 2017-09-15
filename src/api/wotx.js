@@ -1,7 +1,10 @@
 'use strict'
 
 var protocol = require('../utils/protocol.js')
-var Endpoint = require('../types/endpoint.js')
+var api = require('../services/api.js')
+var endpoint = api.endpoint
+var GET = api.METHOD.GET
+var POST = api.METHOD.POST
 
 function WorldOfTanksConsole(realm){
 	var realmUrl = WorldOfTanksConsole.realms[realm]
@@ -12,90 +15,90 @@ function WorldOfTanksConsole(realm){
 
 	Object.assign(this, {
 		account: {
-			players: new Endpoint({
+			players: endpoint({
 				url: apiUrl + '/account/list'
 			}),
-			player: new Endpoint({
+			player: endpoint({
 				url: apiUrl + '/account/info'
 			}),
-			achievements: new Endpoint({
+			achievements: endpoint({
 				url: apiUrl + '/account/achievements'
 			}),
-			psninfo: new Endpoint({
+			psninfo: endpoint({
 				url: apiUrl + '/account/psninfo'
 			}),
-			xuidinfo: new Endpoint({
+			xuidinfo: endpoint({
 				url: apiUrl + '/account/xuidinfo'
 			})
 		},
 		auth: {
-			login: new Endpoint({
+			login: endpoint({
 				url: apiUrl + '/auth/login'
 			}),
-			logout: new Endpoint({
+			logout: endpoint({
 				url: apiUrl + '/auth/logout'
 			}),
-			prolongate: new Endpoint({
+			prolongate: endpoint({
 				url: apiUrl + '/auth/prolongate'
 			})
 		},
 		clan: {
-			list: new Endpoint({
+			list: endpoint({
 				url: apiUrl + '/clans/list'
 			}),
-			info: new Endpoint({
+			info: endpoint({
 				url: apiUrl + '/clans/info'
 			}),
-			playerInfo: new Endpoint({
+			playerInfo: endpoint({
 				url: apiUrl + '/clans/accountinfo'
 			}),
-			glossary: new Endpoint({
+			glossary: endpoint({
 				url: apiUrl + '/clans/glossary'
 			})
 		},
 		encyclopedia: {
-			crew: new Endpoint({
+			crew: endpoint({
 				deprecated: true,
 				url: apiUrl + '/encyclopedia/crewroles'
 			}),
-			vehicles: new Endpoint({
+			vehicles: endpoint({
 				url: apiUrl + '/encyclopedia/vehicles'
 			}),
-			modules: new Endpoint({
+			modules: endpoint({
 				url: apiUrl + '/encyclopedia/vehiclepackages'
 			}),
-			tankUpgrades: new Endpoint({
+			tankUpgrades: endpoint({
 				url: apiUrl + '/encyclopedia/vehicleupgrades'
 			}),
-			achievements: new Endpoint({
+			achievements: endpoint({
 				url: apiUrl + '/encyclopedia/achievements'
 			}),
-			info: new Endpoint({
+			info: endpoint({
 				url: apiUrl + '/encyclopedia/info'
 			})
 		},
 		rating: {
-			types: new Endpoint({
+			types: endpoint({
 				url: apiUrl + '/ratings/types'
 			}),
-			dates: new Endpoint({
+			dates: endpoint({
 				url: apiUrl + '/ratings/dates'
 			}),
-			player: new Endpoint({
+			player: endpoint({
 				url: apiUrl + '/ratings/accounts'
 			}),
-			neighbors: new Endpoint({
+			neighbors: endpoint({
 				url: apiUrl + '/ratings/neighbors'
 			}),
-			top: new Endpoint({
+			top: endpoint({
 				url: apiUrl + '/ratings/top'
 			})
 		},
 		tanks: {
-			stats: new Endpoint({
+			stats: endpoint({
 				url: apiUrl + '/tanks/stats'
 			}),
-			achievements: new Endpoint({
+			achievements: endpoint({
 				url: apiUrl + '/tanks/achievements'
 			})
 		}

@@ -1,7 +1,10 @@
 'use strict'
 
 var protocol = require('../utils/protocol.js')
-var Endpoint = require('../types/endpoint.js')
+var api = require('../services/api.js')
+var endpoint = api.endpoint
+var GET = api.METHOD.GET
+var POST = api.METHOD.POST
 
 function WorldOfWarships(realm){
 	var realmUrl = WorldOfWarships.realms[realm]
@@ -12,70 +15,70 @@ function WorldOfWarships(realm){
 
 	Object.assign(this, {
 		account: {
-			players: new Endpoint({
+			players: endpoint({
 				url: apiUrl + '/account/list'
 			}),
-			player: new Endpoint({
+			player: endpoint({
 				url: apiUrl + '/account/info'
 			}),
-			achievements: new Endpoint({
+			achievements: endpoint({
 				url: apiUrl + '/account/achievements'
 			}),
-			stats: new Endpoint({
+			stats: endpoint({
 				url: apiUrl + '/account/statsbydate'
 			})
 		},
 		ships: {
-			stats: new Endpoint({
+			stats: endpoint({
 				url: apiUrl + '/ships/stats'
 			})
 		},
 		encyclopedia: {
-			ships: new Endpoint({
+			ships: endpoint({
 				url: apiUrl + '/encyclopedia/ships'
 			}),
-			shipInfo: new Endpoint({
+			shipInfo: endpoint({
 				url: apiUrl + '/encyclopedia/shipprofile'
 			}),
-			shipModules: new Endpoint({
+			shipModules: endpoint({
 				url: apiUrl + '/encyclopedia/modules'
 			}),
-			exterior: new Endpoint({
+			exterior: endpoint({
 				url: apiUrl + '/encyclopedia/exterior'
 			}),
-			shipUpgrades: new Endpoint({
+			shipUpgrades: endpoint({
 				url: apiUrl + '/encyclopedia/upgrades'
 			}),
-			accountLevels: new Endpoint({
+			accountLevels: endpoint({
 				url: apiUrl + '/encyclopedia/accountlevels'
 			}),
-			commanders: new Endpoint({
+			commanders: endpoint({
 				url: apiUrl + '/encyclopedia/crews'
 			}),
-			commanderSkills: new Endpoint({
+			commanderSkills: endpoint({
 				url: apiUrl + '/encyclopedia/crewskills'
 			}),
-			commanderRanks: new Endpoint({
+			commanderRanks: endpoint({
 				url: apiUrl + '/encyclopedia/crewranks'
 			}),
-			battleTypes: new Endpoint({
+			battleTypes: endpoint({
 				url: apiUrl + '/encyclopedia/battletypes'
 			}),
-			achievements: new Endpoint({
+			achievements: endpoint({
 				url: apiUrl + '/encyclopedia/achievements'
 			}),
-			info: new Endpoint({
+			info: endpoint({
 				url: apiUrl + '/encyclopedia/info'
 			})
 		},
 		season: {
-			list: new Endpoint({
+			list: endpoint({
 				url: apiUrl + '/seasons/info'
 			}),
-			shipStats: new Endpoint({
+			shipStats: endpoint({
 				url: apiUrl + '/seasons/shipstats'
 			}),
-			playerStats: new Endpoint({
+			playerStats: endpoint({
 				url: apiUrl + '/seasons/accountinfo'
 			})
 		}

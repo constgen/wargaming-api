@@ -1,7 +1,10 @@
 'use strict'
 
 var protocol = require('../utils/protocol.js')
-var Endpoint = require('../types/endpoint.js')
+var api = require('../services/api.js')
+var endpoint = api.endpoint
+var GET = api.METHOD.GET
+var POST = api.METHOD.POST
 
 function WorldOfTanksBlitz(realm) {
 	var realmUrl = WorldOfTanksBlitz.realms[realm]
@@ -12,101 +15,101 @@ function WorldOfTanksBlitz(realm) {
 
 	Object.assign(this, {
 		account: {
-			players: new Endpoint({
+			players: endpoint({
 				url: apiUrl + '/account/list'
 			}),
-			player: new Endpoint({
+			player: endpoint({
 				url: apiUrl + '/account/info'
 			}),
-			achievements: new Endpoint({
+			achievements: endpoint({
 				url: apiUrl + '/account/achievements'
 			}),
-			stats: new Endpoint({
+			stats: endpoint({
 				url: apiUrl + '/account/tankstats'
 			})
 		},
 		encyclopedia: {
-			vehicles: new Endpoint({
+			vehicles: endpoint({
 				url: apiUrl + '/encyclopedia/vehicles'
 			}),
-			tankCharacteristics: new Endpoint({
+			tankCharacteristics: endpoint({
 				url: apiUrl + '/encyclopedia/vehicleprofile'
 			}),
-			modules: new Endpoint({
+			modules: endpoint({
 				url: apiUrl + '/encyclopedia/vehiclepackages'
 			}),
-			provisions: new Endpoint({
+			provisions: endpoint({
 				url: apiUrl + '/encyclopedia/provisions'
 			}),
-			info: new Endpoint({
+			info: endpoint({
 				url: apiUrl + '/encyclopedia/info'
 			}),
-			achievements: new Endpoint({
+			achievements: endpoint({
 				url: apiUrl + '/encyclopedia/achievements'
 			}),
-			crew: new Endpoint({
+			crew: endpoint({
 				url: apiUrl + '/encyclopedia/crewroles'
 			}),
-			tankUpgrades: new Endpoint({
+			tankUpgrades: endpoint({
 				url: apiUrl + '/encyclopedia/vehicleprofiles'
 			})
 		},
 		clan: {
-			list: new Endpoint({
+			list: endpoint({
 				url: apiUrl + '/clans/list'
 			}),
-			info: new Endpoint({
+			info: endpoint({
 				url: apiUrl + '/clans/info'
 			}),
-			playerInfo: new Endpoint({
+			playerInfo: endpoint({
 				url: apiUrl + '/clans/accountinfo'
 			}),
-			glossary: new Endpoint({
+			glossary: endpoint({
 				url: apiUrl + '/clans/glossary'
 			})
 		},
 		tanks: {
-			stats: new Endpoint({
+			stats: endpoint({
 				url: apiUrl + '/tanks/stats'
 			}),
-			achievements: new Endpoint({
+			achievements: endpoint({
 				url: apiUrl + '/tanks/achievements'
 			})
 		},
 		message: {
-			list: new Endpoint({
+			list: endpoint({
 				url: apiUrl + '/clanmessages/messages'
 			}),
-			create: new Endpoint({
+			create: endpoint({
 				url: apiUrl + '/clanmessages/create'
 			}),
-			delete: new Endpoint({
+			delete: endpoint({
 				url: apiUrl + '/clanmessages/delete'
 			}),
-			toggleLike: new Endpoint({
+			toggleLike: endpoint({
 				url: apiUrl + '/clanmessages/like'
 			}),
-			likes: new Endpoint({
+			likes: endpoint({
 				url: apiUrl + '/clanmessages/likes'
 			}),
-			update: new Endpoint({
+			update: endpoint({
 				url: apiUrl + '/clanmessages/update'
 			})
 		},
 		tournament: {
-			list: new Endpoint({
+			list: endpoint({
 				url: apiUrl + '/tournaments/list'
 			}),
-			info: new Endpoint({
+			info: endpoint({
 				url: apiUrl + '/tournaments/info'
 			}),
-			teams: new Endpoint({
+			teams: endpoint({
 				url: apiUrl + '/tournaments/teams'
 			}),
-			stages: new Endpoint({
+			stages: endpoint({
 				url: apiUrl + '/tournaments/stages'
 			}),
-			matches: new Endpoint({
+			matches: endpoint({
 				url: apiUrl + '/tournaments/matches'
 			})
 		}

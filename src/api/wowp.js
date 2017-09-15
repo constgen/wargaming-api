@@ -1,7 +1,10 @@
 'use strict'
 
 var protocol = require('../utils/protocol.js')
-var Endpoint = require('../types/endpoint.js')
+var api = require('../services/api.js')
+var endpoint = api.endpoint
+var GET = api.METHOD.GET
+var POST = api.METHOD.POST
 
 function WorldOfWarplanes(realm) {
 	var realmUrl = WorldOfWarplanes.realms[realm]
@@ -12,53 +15,53 @@ function WorldOfWarplanes(realm) {
 
 	Object.assign(this, {
 		account: {
-			players: new Endpoint({
+			players: endpoint({
 				url: apiUrl + '/account/list'
 			}),
-			player: new Endpoint({
+			player: endpoint({
 				url: apiUrl + '/account/info'
 			}),
-			planes: new Endpoint({
+			planes: endpoint({
 				url: apiUrl + '/account/planes'
 			})
 		},
 		encyclopedia: {
-			planes: new Endpoint({
+			planes: endpoint({
 				url: apiUrl + '/encyclopedia/planes'
 			}),
-			planeInfo: new Endpoint({
+			planeInfo: endpoint({
 				url: apiUrl + '/encyclopedia/planeinfo'
 			}),
-			planeModules: new Endpoint({
+			planeModules: endpoint({
 				url: apiUrl + '/encyclopedia/planemodules'
 			}),
-			planeUpgrades: new Endpoint({
+			planeUpgrades: endpoint({
 				url: apiUrl + '/encyclopedia/planeupgrades'
 			}),
-			planeSpecification: new Endpoint({
+			planeSpecification: endpoint({
 				url: apiUrl + '/encyclopedia/planespecification'
 			}),
-			achievements: new Endpoint({
+			achievements: endpoint({
 				url: apiUrl + '/encyclopedia/achievements'
 			}),
-			info: new Endpoint({
+			info: endpoint({
 				url: apiUrl + '/encyclopedia/info'
 			})
 		},
 		rating: {
-			types: new Endpoint({
+			types: endpoint({
 				url: apiUrl + '/ratings/types'
 			}),
-			player: new Endpoint({
+			player: endpoint({
 				url: apiUrl + '/ratings/accounts'
 			}),
-			neighbors: new Endpoint({
+			neighbors: endpoint({
 				url: apiUrl + '/ratings/neighbors'
 			}),
-			top: new Endpoint({
+			top: endpoint({
 				url: apiUrl + '/ratings/top'
 			}),
-			dates: new Endpoint({
+			dates: endpoint({
 				url: apiUrl + '/ratings/dates'
 			})
 		}

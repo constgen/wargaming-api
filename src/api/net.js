@@ -1,7 +1,10 @@
 'use strict'
 
 var protocol = require('../utils/protocol.js')
-var Endpoint = require('../types/endpoint.js')
+var api = require('../services/api.js')
+var endpoint = api.endpoint
+var GET = api.METHOD.GET
+var POST = api.METHOD.POST
 
 function WargamingNet(realm){
 	var realmUrl = WargamingNet.realms[realm]
@@ -12,95 +15,95 @@ function WargamingNet(realm){
 
 	Object.assign(this, {
 		account: {
-			players: new Endpoint({
+			players: endpoint({
 				url: apiUrl + '/account/list'
 			}),
-			player: new Endpoint({
+			player: endpoint({
 				url: apiUrl + '/account/info'
 			})
 		},
 		wargag: {
-			content: new Endpoint({
+			content: endpoint({
 				url: apiUrl + '/wargag/content'
 			}),
-			search: new Endpoint({
+			search: endpoint({
 				url: apiUrl + '/wargag/search'
 			}),
-			comments: new Endpoint({
+			comments: endpoint({
 				url: apiUrl + '/wargag/comments'
 			}),
-			categories: new Endpoint({
+			categories: endpoint({
 				url: apiUrl + '/wargag/categories'
 			}),
-			rate: new Endpoint({
+			rate: endpoint({
 				url: apiUrl + '/wargag/rate'
 			}),
-			createComment: new Endpoint({
+			createComment: endpoint({
 				url: apiUrl + '/wargag/newcomment'
 			}),
-			deleteComment: new Endpoint({
+			deleteComment: endpoint({
 				url: apiUrl + '/wargag/deletecomment'
 			})
 		},
 		league: {
-			list: new Endpoint({
+			list: endpoint({
 				url: apiUrl + '/league/leagues'
 			}),
-			tournaments: new Endpoint({
+			tournaments: endpoint({
 				url: apiUrl + '/league/tournaments'
 			}),
-			grid: new Endpoint({
+			grid: endpoint({
 				url: apiUrl + '/league/grid'
 			}),
-			tournamentMatches: new Endpoint({
+			tournamentMatches: endpoint({
 				url: apiUrl + '/league/matches'
 			}),
-			teams: new Endpoint({
+			teams: endpoint({
 				url: apiUrl + '/league/teams'
 			}),
-			teamInfo: new Endpoint({
+			teamInfo: endpoint({
 				url: apiUrl + '/league/teaminfo'
 			}),
-			hallOfFame: new Endpoint({
+			hallOfFame: endpoint({
 				url: apiUrl + '/league/halloffame'
 			}),
-			players: new Endpoint({
+			players: endpoint({
 				url: apiUrl + '/league/players'
 			}),
-			playerInfo: new Endpoint({
+			playerInfo: endpoint({
 				url: apiUrl + '/league/playerinfo'
 			})
 		},
 		clan: {
-			list: new Endpoint({
+			list: endpoint({
 				url: apiUrl + '/clans/list'
 			}),
-			info: new Endpoint({
+			info: endpoint({
 				url: apiUrl + '/clans/info'
 			}),
-			playerInfo: new Endpoint({
+			playerInfo: endpoint({
 				url: apiUrl + '/clans/membersinfo'
 			}),
-			glossary: new Endpoint({
+			glossary: endpoint({
 				url: apiUrl + '/clans/glossary'
 			}),
-			messageboard: new Endpoint({
+			messageboard: endpoint({
 				url: apiUrl + '/clans/messageboard'
 			})
 		},
 		wgTv: {
-			tags: new Endpoint({
+			tags: endpoint({
 				url: apiUrl + '/wgtv/tags'
 			}),
-			videos: new Endpoint({
+			videos: endpoint({
 				url: apiUrl + '/wgtv/videos'
 			}),
-			vehicles: new Endpoint({
+			vehicles: endpoint({
 				url: apiUrl + '/wgtv/vehicles'
 			})
 		},
 		server: {
-			info: new Endpoint({
+			info: endpoint({
 				url: apiUrl + '/servers/info'
 			})
 		}
