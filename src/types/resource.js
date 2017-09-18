@@ -3,6 +3,7 @@
 var http = require('../services/http/http-client.js')
 var ApiError = require('./api.error.js')
 var noop = require('../utils/noop.js')
+var logError = require('../utils/log-error.js')
 var url = require('../utils/url.js')
 
 function Resource(options) {
@@ -76,7 +77,7 @@ Resource.prototype = {
 		var resource = this
 
 		callback = callback || noop
-		errorCallback = errorCallback || noop
+		errorCallback = errorCallback || logError
 		resource.state = resource.STATE.FETCHING
 		http.request({
 			url: this.url,

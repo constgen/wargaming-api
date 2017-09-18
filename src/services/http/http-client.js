@@ -49,7 +49,7 @@ var service = {
 				body.ETag = response.headers.ETag
 			}
 			resolve(body)
-		}, reject)
+		}).catch(reject)
 	}
 }
 
