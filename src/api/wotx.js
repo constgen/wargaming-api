@@ -9,6 +9,8 @@ var POST = api.METHOD.POST
 function WorldOfTanksConsole(realm){
 	var realmUrl = WorldOfTanksConsole.realms[realm]
 	var apiUrl = protocol + '//' + realmUrl + '/wotx'
+	var helpUrl = 'https://developers.wargaming.net/reference/all/wotx'
+
 	if (!realmUrl) {
 		throw new ReferenceError('Requested realm "' + realm + '" is not supported for this API')
 	}
@@ -16,90 +18,140 @@ function WorldOfTanksConsole(realm){
 	Object.assign(this, {
 		account: {
 			players: endpoint({
-				url: apiUrl + '/account/list'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'account/list'
 			}),
 			player: endpoint({
-				url: apiUrl + '/account/info'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'account/info'
 			}),
 			achievements: endpoint({
-				url: apiUrl + '/account/achievements'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'account/achievements'
 			}),
 			psninfo: endpoint({
-				url: apiUrl + '/account/psninfo'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'account/psninfo'
 			}),
 			xuidinfo: endpoint({
-				url: apiUrl + '/account/xuidinfo'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'account/xuidinfo'
 			})
 		},
 		auth: {
 			login: endpoint({
-				url: apiUrl + '/auth/login'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'auth/login'
 			}),
 			logout: endpoint({
-				url: apiUrl + '/auth/logout'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'auth/logout'
 			}),
 			prolongate: endpoint({
-				url: apiUrl + '/auth/prolongate'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'auth/prolongate'
 			})
 		},
 		clan: {
 			list: endpoint({
-				url: apiUrl + '/clans/list'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'clans/list'
 			}),
 			info: endpoint({
-				url: apiUrl + '/clans/info'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'clans/info'
 			}),
 			playerInfo: endpoint({
-				url: apiUrl + '/clans/accountinfo'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'clans/accountinfo'
 			}),
 			glossary: endpoint({
-				url: apiUrl + '/clans/glossary'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'clans/glossary'
 			})
 		},
 		encyclopedia: {
 			crew: endpoint({
 				deprecated: true,
-				url: apiUrl + '/encyclopedia/crewroles'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'encyclopedia/crewroles'
 			}),
 			vehicles: endpoint({
-				url: apiUrl + '/encyclopedia/vehicles'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'encyclopedia/vehicles'
 			}),
 			modules: endpoint({
-				url: apiUrl + '/encyclopedia/vehiclepackages'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'encyclopedia/vehiclepackages'
 			}),
 			tankUpgrades: endpoint({
-				url: apiUrl + '/encyclopedia/vehicleupgrades'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'encyclopedia/vehicleupgrades'
 			}),
 			achievements: endpoint({
-				url: apiUrl + '/encyclopedia/achievements'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'encyclopedia/achievements'
 			}),
 			info: endpoint({
-				url: apiUrl + '/encyclopedia/info'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'encyclopedia/info'
 			})
 		},
 		rating: {
 			types: endpoint({
-				url: apiUrl + '/ratings/types'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'ratings/types'
 			}),
 			dates: endpoint({
-				url: apiUrl + '/ratings/dates'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'ratings/dates'
 			}),
 			player: endpoint({
-				url: apiUrl + '/ratings/accounts'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'ratings/accounts'
 			}),
 			neighbors: endpoint({
-				url: apiUrl + '/ratings/neighbors'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'ratings/neighbors'
 			}),
 			top: endpoint({
-				url: apiUrl + '/ratings/top'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'ratings/top'
 			})
 		},
 		tanks: {
 			stats: endpoint({
-				url: apiUrl + '/tanks/stats'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'tanks/stats'
 			}),
 			achievements: endpoint({
-				url: apiUrl + '/tanks/achievements'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'tanks/achievements'
 			})
 		}
 	})

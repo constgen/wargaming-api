@@ -9,6 +9,8 @@ var POST = api.METHOD.POST
 function WorldOfWarplanes(realm) {
 	var realmUrl = WorldOfWarplanes.realms[realm]
 	var apiUrl = protocol + '//' + realmUrl + '/wowp'
+	var helpUrl = 'https://developers.wargaming.net/reference/all/wowp'
+
 	if (!realmUrl) {
 		throw new ReferenceError('Requested realm "' + realm + '" is not supported for this API')
 	}
@@ -16,53 +18,83 @@ function WorldOfWarplanes(realm) {
 	Object.assign(this, {
 		account: {
 			players: endpoint({
-				url: apiUrl + '/account/list'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'account/list'
 			}),
 			player: endpoint({
-				url: apiUrl + '/account/info'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'account/info'
 			}),
 			planes: endpoint({
-				url: apiUrl + '/account/planes'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'account/planes'
 			})
 		},
 		encyclopedia: {
 			planes: endpoint({
-				url: apiUrl + '/encyclopedia/planes'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'encyclopedia/planes'
 			}),
 			planeInfo: endpoint({
-				url: apiUrl + '/encyclopedia/planeinfo'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'encyclopedia/planeinfo'
 			}),
 			planeModules: endpoint({
-				url: apiUrl + '/encyclopedia/planemodules'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'encyclopedia/planemodules'
 			}),
 			planeUpgrades: endpoint({
-				url: apiUrl + '/encyclopedia/planeupgrades'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'encyclopedia/planeupgrades'
 			}),
 			planeSpecification: endpoint({
-				url: apiUrl + '/encyclopedia/planespecification'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'encyclopedia/planespecification'
 			}),
 			achievements: endpoint({
-				url: apiUrl + '/encyclopedia/achievements'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'encyclopedia/achievements'
 			}),
 			info: endpoint({
-				url: apiUrl + '/encyclopedia/info'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'encyclopedia/info'
 			})
 		},
 		rating: {
 			types: endpoint({
-				url: apiUrl + '/ratings/types'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'ratings/types'
 			}),
 			player: endpoint({
-				url: apiUrl + '/ratings/accounts'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'ratings/accounts'
 			}),
 			neighbors: endpoint({
-				url: apiUrl + '/ratings/neighbors'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'ratings/neighbors'
 			}),
 			top: endpoint({
-				url: apiUrl + '/ratings/top'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'ratings/top'
 			}),
 			dates: endpoint({
-				url: apiUrl + '/ratings/dates'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'ratings/dates'
 			})
 		}
 	})

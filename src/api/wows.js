@@ -9,6 +9,8 @@ var POST = api.METHOD.POST
 function WorldOfWarships(realm){
 	var realmUrl = WorldOfWarships.realms[realm]
 	var apiUrl = protocol + '//' + realmUrl + '/wows'
+	var helpUrl = 'https://developers.wargaming.net/reference/all/wows'
+
 	if (!realmUrl) {
 		throw new ReferenceError('Requested realm "' + realm + '" is not supported for this API')
 	}
@@ -16,87 +18,137 @@ function WorldOfWarships(realm){
 	Object.assign(this, {
 		account: {
 			players: endpoint({
-				url: apiUrl + '/account/list'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'account/list'
 			}),
 			player: endpoint({
-				url: apiUrl + '/account/info'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'account/info'
 			}),
 			achievements: endpoint({
-				url: apiUrl + '/account/achievements'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'account/achievements'
 			}),
 			stats: endpoint({
-				url: apiUrl + '/account/statsbydate'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'account/statsbydate'
 			})
 		},
 		ships: {
 			stats: endpoint({
-				url: apiUrl + '/ships/stats'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'ships/stats'
 			})
 		},
 		encyclopedia: {
 			ships: endpoint({
-				url: apiUrl + '/encyclopedia/ships'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'encyclopedia/ships'
 			}),
 			shipInfo: endpoint({
-				url: apiUrl + '/encyclopedia/shipprofile'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'encyclopedia/shipprofile'
 			}),
 			shipModules: endpoint({
-				url: apiUrl + '/encyclopedia/modules'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'encyclopedia/modules'
 			}),
 			consumables: endpoint({
-				url: apiUrl + '/encyclopedia/consumables'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'encyclopedia/consumables'
 			}),
 			accountLevels: endpoint({
-				url: apiUrl + '/encyclopedia/accountlevels'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'encyclopedia/accountlevels'
 			}),
 			commanders: endpoint({
-				url: apiUrl + '/encyclopedia/crews'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'encyclopedia/crews'
 			}),
 			commanderSkills: endpoint({
-				url: apiUrl + '/encyclopedia/crewskills'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'encyclopedia/crewskills'
 			}),
 			commanderRanks: endpoint({
-				url: apiUrl + '/encyclopedia/crewranks'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'encyclopedia/crewranks'
 			}),
 			battleTypes: endpoint({
-				url: apiUrl + '/encyclopedia/battletypes'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'encyclopedia/battletypes'
 			}),
 			achievements: endpoint({
-				url: apiUrl + '/encyclopedia/achievements'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'encyclopedia/achievements'
 			}),
 			info: endpoint({
-				url: apiUrl + '/encyclopedia/info'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'encyclopedia/info'
 			}),
 			collections: endpoint({
-				url: apiUrl + '/encyclopedia/collections'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'encyclopedia/collections'
 			}),
 			collectionItems: endpoint({
-				url: apiUrl + '/encyclopedia/collectioncards'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'encyclopedia/collectioncards'
 			})
 		},
 		season: {
 			list: endpoint({
-				url: apiUrl + '/seasons/info'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'seasons/info'
 			}),
 			shipStats: endpoint({
-				url: apiUrl + '/seasons/shipstats'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'seasons/shipstats'
 			}),
 			playerStats: endpoint({
-				url: apiUrl + '/seasons/accountinfo'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'seasons/accountinfo'
 			})
 		},
 		clans: {
 			list: endpoint({
-				url: apiUrl + '/clans/list'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'clans/list'
 			}),
 			info: endpoint({
-				url: apiUrl + '/clans/info'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'clans/info'
 			}),
 			accountinfo: endpoint({
-				url: apiUrl + '/clans/accountinfo'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'clans/accountinfo'
 			}),
 			glossary: endpoint({
-				url: apiUrl + '/clans/glossary'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'clans/glossary'
 			})
 		}
 	})

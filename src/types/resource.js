@@ -3,13 +3,15 @@
 var http = require('../services/http/http-client.js')
 var ApiError = require('./api.error.js')
 var noop = require('../utils/noop.js')
+var url = require('../utils/url.js')
 
 function Resource(options) {
 	options = options || {}
 	if (options.deprecated) {
 		console.warn(options.url + ' resource is deprecated')
 	}
-	this.url = options.url
+	this.url = options.baseUrl + '/' + options.url
+	this.helpUrl = options.baseHelpUrl + '/' + options.url + url.format({ query: options.params })
 	this.method = options.method
 	this.params = options.params
 	this.listeners = []
@@ -23,10 +25,10 @@ Resource.prototype = {
 	constructor: Resource,
 
 	STATE: {
-		UNINTIALIZED: 0,
-		FETCHING: 1,
-		READY: 2,
-		ERROR: 3
+		UNINTIALIZED: 'UNINTIALIZED',
+		FETCHING: 'FETCHING',
+		READY: 'READY',
+		ERROR: 'ERROR'
 	},
 
 	/**
@@ -150,6 +152,20 @@ Resource.prototype = {
 		//stop periodic requests if there are no listeners
 		if (!listeners.length) {
 			this.stopListening()
+		}
+		return this
+	},
+
+	/**
+	 * @public
+	 */
+	help: function(){
+		// If `console.table` is supported, then colors are also supported
+		if (console.table) {
+			console.log('%cResource Reference: %c' + this.helpUrl, 'font-weight: bold', 'color: blue')
+		}
+		else {
+			console.log('Resource Reference: ' + this.helpUrl)
 		}
 		return this
 	}

@@ -9,6 +9,8 @@ var POST = api.METHOD.POST
 function WargamingNet(realm){
 	var realmUrl = WargamingNet.realms[realm]
 	var apiUrl = protocol + '//' + realmUrl + '/wgn'
+	var helpUrl = 'https://developers.wargaming.net/reference/all/wgn'
+
 	if (!realmUrl) {
 		throw new ReferenceError('Requested realm "' + realm + '" is not supported for this API')
 	}
@@ -16,66 +18,102 @@ function WargamingNet(realm){
 	Object.assign(this, {
 		account: {
 			players: endpoint({
-				url: apiUrl + '/account/list'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'account/list'
 			}),
 			player: endpoint({
-				url: apiUrl + '/account/info'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'account/info'
 			})
 		},
 		wargag: {
 			content: endpoint({
-				url: apiUrl + '/wargag/content'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'wargag/content'
 			}),
 			search: endpoint({
-				url: apiUrl + '/wargag/search'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'wargag/search'
 			}),
 			comments: endpoint({
-				url: apiUrl + '/wargag/comments'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'wargag/comments'
 			}),
 			categories: endpoint({
-				url: apiUrl + '/wargag/categories'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'wargag/categories'
 			}),
 			rate: endpoint({
-				url: apiUrl + '/wargag/rate'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'wargag/rate'
 			}),
 			createComment: endpoint({
-				url: apiUrl + '/wargag/newcomment'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'wargag/newcomment'
 			}),
 			deleteComment: endpoint({
-				url: apiUrl + '/wargag/deletecomment'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'wargag/deletecomment'
 			})
 		},
 		clan: {
 			list: endpoint({
-				url: apiUrl + '/clans/list'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'clans/list'
 			}),
 			info: endpoint({
-				url: apiUrl + '/clans/info'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'clans/info'
 			}),
 			playerInfo: endpoint({
-				url: apiUrl + '/clans/membersinfo'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'clans/membersinfo'
 			}),
 			glossary: endpoint({
-				url: apiUrl + '/clans/glossary'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'clans/glossary'
 			}),
 			messageboard: endpoint({
-				url: apiUrl + '/clans/messageboard'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'clans/messageboard'
 			})
 		},
 		wgTv: {
 			tags: endpoint({
-				url: apiUrl + '/wgtv/tags'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'wgtv/tags'
 			}),
 			videos: endpoint({
-				url: apiUrl + '/wgtv/videos'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'wgtv/videos'
 			}),
 			vehicles: endpoint({
-				url: apiUrl + '/wgtv/vehicles'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'wgtv/vehicles'
 			})
 		},
 		server: {
 			info: endpoint({
-				url: apiUrl + '/servers/info'
+				baseUrl: apiUrl,
+				baseHelpUrl: helpUrl,
+				url: 'servers/info'
 			})
 		}
 	})
