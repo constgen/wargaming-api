@@ -4,7 +4,7 @@ var Resource = require('../types/resource.js')
 var http = require('../services/http/http-client.js')
 
 var service = {
-    DEFAULT_UPDATE_INTERVAL: 10000,
+    DEFAULT_UPDATE_INTERVAL: 15000,
     METHOD: http.METHOD,
 
     endpoint: function (config) {
@@ -19,7 +19,6 @@ var service = {
             var options = Object.assign({}, config, { params: params })
             return new Resource(options)
         }
-        endpoint.url = config.url
         return endpoint
     }
 }
