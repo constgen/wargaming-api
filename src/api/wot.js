@@ -17,12 +17,18 @@ function WorldOfTanks(realm){
 
 	Object.assign(this, {
 		account: {
-			players: endpoint({
+			/**
+			 * Players
+			 */
+			list: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'account/list'
 			}),
-			player: endpoint({
+			/**
+			 * Player
+			 */
+			info: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'account/info'
@@ -32,7 +38,7 @@ function WorldOfTanks(realm){
 				baseHelpUrl: helpUrl,
 				url: 'account/achievements'
 			}),
-			stats: endpoint({
+			statsbydate: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'account/statsbydate'
@@ -77,84 +83,78 @@ function WorldOfTanks(realm){
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'globalmap/info'
-			})
-		},
-		event: {
-			list: endpoint({
+			}),
+			events: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'globalmap/events'
 			}),
-			clanInfo: endpoint({
+			eventclaninfo: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'globalmap/eventclaninfo'
 			}),
-			playerInfo: endpoint({
+			eventaccountinfo: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'globalmap/eventaccountinfo'
 			}),
-			playerRating: endpoint({
+			eventaccountratings: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'globalmap/eventaccountratings'
 			}),
-			playerNeighborsRating: endpoint({
+			eventaccountratingneighbors: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'globalmap/eventaccountratingneighbors'
 			}),
-			clanRating: endpoint({
+			eventrating: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'globalmap/eventrating'
 			}),
-			clanNeighborsRating: endpoint({
+			eventratingneighbors: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'globalmap/eventratingneighbors'
-			})
-		},
-		clan: {
-			info: endpoint({
+			}),
+			claninfo: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'globalmap/claninfo'
 			}),
-			rovinces: endpoint({
+			clanprovinces: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url:  'globalmap/clanprovinces'
 			}),
-			battles: endpoint({
+			clanbattles: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'globalmap/clanbattles'
-			})
-		},
-		season: {
-			list: endpoint({
+			}),
+			seasons: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'globalmap/seasons'
 			}),
-			clanInfo: endpoint({
+			seasonclaninfo: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'globalmap/seasonclaninfo'
 			}),
-			playerInfo: endpoint({
+			seasonaccountinfo: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'globalmap/seasonaccountinfo'
 			}),
-			clanRating: endpoint({
+			seasonrating: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'globalmap/seasonrating'
 			}),
-			clanNeighborsRating: endpoint({
+			seasonratingneighbors: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'globalmap/seasonratingneighbors'
@@ -167,7 +167,7 @@ function WorldOfTanks(realm){
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/tanks'
 			}),
-			tankInfo: endpoint({
+			tankinfo: endpoint({
 				deprecated: true,
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
@@ -176,39 +176,39 @@ function WorldOfTanks(realm){
 			vehicles: endpoint({
 				url: 'encyclopedia/vehicles'
 			}),
-			vehicleProfile: endpoint({
+			vehicleprofile: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/vehicleprofile'
 			}),
-			vehicleConfigurations: endpoint({
+			vehicleprofiles: endpoint({
 				url: 'encyclopedia/vehicleprofiles'
 			}),
-			tankEngines: endpoint({
+			tankengines: endpoint({
 				deprecated: true,
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/tankengines'
 			}),
-			tankTurrets: endpoint({
+			tankturrets: endpoint({
 				deprecated: true,
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/tankturrets'
 			}),
-			tankRadios: endpoint({
+			tankradios: endpoint({
 				deprecated: true,
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/tankradios'
 			}),
-			tankChassis: endpoint({
+			tankchassis: endpoint({
 				deprecated: true,
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/tankchassis'
 			}),
-			tankWeapons: endpoint({
+			tankguns: endpoint({
 				deprecated: true,
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
@@ -234,7 +234,7 @@ function WorldOfTanks(realm){
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/provisions'
 			}),
-			personalMissions: endpoint({
+			personalmissions: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/personalmissions'
@@ -244,7 +244,10 @@ function WorldOfTanks(realm){
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/boosters'
 			}),
-			tankUpgrades: endpoint({
+			/**
+			 * Tank upgrades
+			 */
+			vehicleprofiles: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/vehicleprofiles'
@@ -255,7 +258,7 @@ function WorldOfTanks(realm){
 				url: 'encyclopedia/modules'
 			})
 		},
-		rating: {
+		ratings: {
 			types: endpoint({
 				deprecated: true,
 				baseUrl: apiUrl,
@@ -268,7 +271,10 @@ function WorldOfTanks(realm){
 				baseHelpUrl: helpUrl,
 				url: 'ratings/dates'
 			}),
-			player: endpoint({
+			/**
+			 * Players
+			 */
+			accounts: endpoint({
 				deprecated: true,
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
@@ -287,7 +293,7 @@ function WorldOfTanks(realm){
 				url: 'ratings/top'
 			})
 		},
-		clanRating: {
+		clanratings: {
 			types: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,

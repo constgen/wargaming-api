@@ -17,12 +17,18 @@ function WorldOfWarplanes(realm) {
 
 	Object.assign(this, {
 		account: {
-			players: endpoint({
+			/**
+			 * Players
+			 */
+			list: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'account/list'
 			}),
-			player: endpoint({
+			/**
+			 * Player
+			 */
+			info: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'account/info'
@@ -39,22 +45,22 @@ function WorldOfWarplanes(realm) {
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/planes'
 			}),
-			planeInfo: endpoint({
+			planeinfo: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/planeinfo'
 			}),
-			planeModules: endpoint({
+			planemodules: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/planemodules'
 			}),
-			planeUpgrades: endpoint({
+			planeupgrades: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/planeupgrades'
 			}),
-			planeSpecification: endpoint({
+			planespecification: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/planespecification'
@@ -70,13 +76,16 @@ function WorldOfWarplanes(realm) {
 				url: 'encyclopedia/info'
 			})
 		},
-		rating: {
+		ratings: {
 			types: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'ratings/types'
 			}),
-			player: endpoint({
+			/**
+			 * Player
+			 */
+			accounts: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'ratings/accounts'

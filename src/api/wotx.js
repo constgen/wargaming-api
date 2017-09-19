@@ -17,12 +17,18 @@ function WorldOfTanksConsole(realm){
 
 	Object.assign(this, {
 		account: {
-			players: endpoint({
+			/**
+			 * Players
+			 */
+			list: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'account/list'
 			}),
-			player: endpoint({
+			/**
+			 * Player
+			 */
+			info: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'account/info'
@@ -60,7 +66,7 @@ function WorldOfTanksConsole(realm){
 				url: 'auth/prolongate'
 			})
 		},
-		clan: {
+		clans: {
 			list: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
@@ -71,7 +77,10 @@ function WorldOfTanksConsole(realm){
 				baseHelpUrl: helpUrl,
 				url: 'clans/info'
 			}),
-			playerInfo: endpoint({
+			/**
+			 * Player info
+			 */
+			accountinfo: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'clans/accountinfo'
@@ -83,7 +92,10 @@ function WorldOfTanksConsole(realm){
 			})
 		},
 		encyclopedia: {
-			crew: endpoint({
+			/**
+			 * Crew
+			 */
+			crewroles: endpoint({
 				deprecated: true,
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
@@ -94,12 +106,18 @@ function WorldOfTanksConsole(realm){
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/vehicles'
 			}),
-			modules: endpoint({
+			/**
+			 * Modules
+			 */
+			vehiclepackages: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/vehiclepackages'
 			}),
-			tankUpgrades: endpoint({
+			/**
+			 * Tank upgrades
+			 */
+			vehicleupgrades: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/vehicleupgrades'
@@ -115,7 +133,7 @@ function WorldOfTanksConsole(realm){
 				url: 'encyclopedia/info'
 			})
 		},
-		rating: {
+		ratings: {
 			types: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
@@ -126,7 +144,10 @@ function WorldOfTanksConsole(realm){
 				baseHelpUrl: helpUrl,
 				url: 'ratings/dates'
 			}),
-			player: endpoint({
+			/**
+			 * Players
+			 */
+			accounts: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'ratings/accounts'

@@ -17,12 +17,18 @@ function WargamingNet(realm){
 
 	Object.assign(this, {
 		account: {
-			players: endpoint({
+			/**
+			 * Players
+			 */
+			list: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'account/list'
 			}),
-			player: endpoint({
+			/**
+			 * Player
+			 */
+			info: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'account/info'
@@ -54,18 +60,18 @@ function WargamingNet(realm){
 				baseHelpUrl: helpUrl,
 				url: 'wargag/rate'
 			}),
-			createComment: endpoint({
+			newcomment: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'wargag/newcomment'
 			}),
-			deleteComment: endpoint({
+			deletecomment: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'wargag/deletecomment'
 			})
 		},
-		clan: {
+		clans: {
 			list: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
@@ -76,7 +82,7 @@ function WargamingNet(realm){
 				baseHelpUrl: helpUrl,
 				url: 'clans/info'
 			}),
-			playerInfo: endpoint({
+			membersinfo: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'clans/membersinfo'
@@ -92,7 +98,7 @@ function WargamingNet(realm){
 				url: 'clans/messageboard'
 			})
 		},
-		wgTv: {
+		wgtv: {
 			tags: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
@@ -109,7 +115,7 @@ function WargamingNet(realm){
 				url: 'wgtv/vehicles'
 			})
 		},
-		server: {
+		servers: {
 			info: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,

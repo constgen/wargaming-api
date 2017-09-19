@@ -17,12 +17,18 @@ function WorldOfWarships(realm){
 
 	Object.assign(this, {
 		account: {
-			players: endpoint({
+			/**
+			 * Players
+			 */
+			list: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'account/list'
 			}),
-			player: endpoint({
+			/**
+			 * Player
+			 */
+			info: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'account/info'
@@ -32,7 +38,7 @@ function WorldOfWarships(realm){
 				baseHelpUrl: helpUrl,
 				url: 'account/achievements'
 			}),
-			stats: endpoint({
+			statsbydate: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'account/statsbydate'
@@ -51,12 +57,15 @@ function WorldOfWarships(realm){
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/ships'
 			}),
-			shipInfo: endpoint({
+			/**
+			 * Ship info
+			 */
+			shipprofile: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/shipprofile'
 			}),
-			shipModules: endpoint({
+			modules: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/modules'
@@ -66,27 +75,36 @@ function WorldOfWarships(realm){
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/consumables'
 			}),
-			accountLevels: endpoint({
+			accountlevels: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/accountlevels'
 			}),
-			commanders: endpoint({
+			/**
+			 * Commanders
+			 */
+			crews: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/crews'
 			}),
-			commanderSkills: endpoint({
+			/**
+			 * Commander skills
+			 */
+			crewskills: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/crewskills'
 			}),
-			commanderRanks: endpoint({
+			/**
+			 * Commander ranks
+			 */
+			crewranks: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/crewranks'
 			}),
-			battleTypes: endpoint({
+			battletypes: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/battletypes'
@@ -106,24 +124,33 @@ function WorldOfWarships(realm){
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/collections'
 			}),
-			collectionItems: endpoint({
+			/**
+			 * Collection items
+			 */
+			collectioncards: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/collectioncards'
 			})
 		},
-		season: {
-			list: endpoint({
+		seasons: {
+			/**
+			 * Seasons list
+			 */
+			info: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'seasons/info'
 			}),
-			shipStats: endpoint({
+			shipstats: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'seasons/shipstats'
 			}),
-			playerStats: endpoint({
+			/**
+			 * Player stats
+			 */
+			accountinfo: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'seasons/accountinfo'

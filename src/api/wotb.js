@@ -17,12 +17,18 @@ function WorldOfTanksBlitz(realm) {
 
 	Object.assign(this, {
 		account: {
-			players: endpoint({
+			/**
+			 * Players
+			 */
+			list: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'account/list'
 			}),
-			player: endpoint({
+			/**
+			 * Player
+			 */
+			info: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'account/info'
@@ -32,7 +38,7 @@ function WorldOfTanksBlitz(realm) {
 				baseHelpUrl: helpUrl,
 				url: 'account/achievements'
 			}),
-			stats: endpoint({
+			tankstats: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'account/tankstats'
@@ -44,12 +50,18 @@ function WorldOfTanksBlitz(realm) {
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/vehicles'
 			}),
-			tankCharacteristics: endpoint({
+			/**
+			 * Tank characteristics
+			 */
+			vehicleprofile: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/vehicleprofile'
 			}),
-			modules: endpoint({
+			/**
+			 * Modules
+			 */
+			vehiclepackages: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/vehiclepackages'
@@ -69,18 +81,24 @@ function WorldOfTanksBlitz(realm) {
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/achievements'
 			}),
-			crew: endpoint({
+			/**
+			 * Crew
+			 */
+			crewroles: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/crewroles'
 			}),
-			tankUpgrades: endpoint({
+			/**
+			 * Tank upgrades
+			 */
+			vehicleprofiles: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/vehicleprofiles'
 			})
 		},
-		clan: {
+		clans: {
 			list: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
@@ -91,7 +109,10 @@ function WorldOfTanksBlitz(realm) {
 				baseHelpUrl: helpUrl,
 				url: 'clans/info'
 			}),
-			playerInfo: endpoint({
+			/**
+			 * Player info
+			 */
+			accountinfo: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'clans/accountinfo'
@@ -115,7 +136,7 @@ function WorldOfTanksBlitz(realm) {
 			})
 		},
 		clanmessages: {
-			list: endpoint({
+			messages: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'clanmessages/messages'
@@ -130,7 +151,10 @@ function WorldOfTanksBlitz(realm) {
 				baseHelpUrl: helpUrl,
 				url: 'clanmessages/delete'
 			}),
-			toggleLike: endpoint({
+			/**
+			 * Toggle like
+			 */
+			like: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'clanmessages/like'
@@ -146,7 +170,7 @@ function WorldOfTanksBlitz(realm) {
 				url: 'clanmessages/update'
 			})
 		},
-		tournament: {
+		tournaments: {
 			list: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
