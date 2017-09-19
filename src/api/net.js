@@ -1,7 +1,7 @@
 'use strict'
 
 var protocol = require('../utils/protocol.js')
-var getRealmsListing = require('../utils/get-realms-listing.js')
+var RealmReferenceError = require('../types/realm-reference-error.js')
 var api = require('../services/api.js')
 var endpoint = api.endpoint
 var GET = api.METHOD.GET
@@ -16,12 +16,12 @@ var REALMS = {
 }
 
 function WargamingNet(realm){
-	var realmUrl = WargamingNet.realms[realm]
+	var realmUrl = REALMS[realm]
 	var apiUrl = protocol + '//' + realmUrl + '/wgn'
 	var helpUrl = 'https://developers.wargaming.net/reference/all/wgn'
 
 	if (!realmUrl) {
-		throw new ReferenceError('Selected realm "' + realm + '" is not supported for this API. Use one of ' + getRealmsListing(REALMS))
+		throw new RealmReferenceError(realm, REALMS)
 	}
 
 	Object.assign(this, {

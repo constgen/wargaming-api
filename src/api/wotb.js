@@ -1,7 +1,7 @@
 'use strict'
 
 var protocol = require('../utils/protocol.js')
-var getRealmsListing = require('../utils/get-realms-listing.js')
+var RealmReferenceError = require('../types/realm-reference-error.js')
 var api = require('../services/api.js')
 var endpoint = api.endpoint
 
@@ -14,12 +14,12 @@ var REALMS = {
 }
 
 function WorldOfTanksBlitz(realm) {
-	var realmUrl = WorldOfTanksBlitz.realms[realm]
+	var realmUrl = REALMS[realm]
 	var apiUrl = protocol + '//' + realmUrl + '/wotb'
 	var helpUrl = 'https://developers.wargaming.net/reference/all/wotb'
 
 	if (!realmUrl) {
-		throw new ReferenceError('Selected realm "' + realm + '" is not supported for this API. Use one of ' + getRealmsListing(REALMS))
+		throw new RealmReferenceError(realm, REALMS)
 	}
 
 	Object.assign(this, {

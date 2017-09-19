@@ -1,7 +1,7 @@
 'use strict'
 
 var http = require('../services/http/http-client.js')
-var ApiError = require('./api.error.js')
+var ApiError = require('./api-error.js')
 var noop = require('../utils/noop.js')
 var logError = require('../utils/log-error.js')
 var url = require('../utils/url.js')
