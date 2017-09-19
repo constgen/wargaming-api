@@ -1,10 +1,17 @@
 'use strict'
 
 var protocol = require('../utils/protocol.js')
+var getRealmsListing = require('../utils/get-realms-listing.js')
 var api = require('../services/api.js')
 var endpoint = api.endpoint
-var GET = api.METHOD.GET
-var POST = api.METHOD.POST
+
+var REALMS = {
+	'ru': 'api.worldofwarships.ru',
+	'eu': 'api.worldofwarships.eu',
+	'na': 'api.worldofwarships.com',
+	//'kr': 'api.worldofwarships.kr',
+	'asia': 'api.worldofwarships.asia'
+}
 
 function WorldOfWarships(realm){
 	var realmUrl = WorldOfWarships.realms[realm]
@@ -12,7 +19,7 @@ function WorldOfWarships(realm){
 	var helpUrl = 'https://developers.wargaming.net/reference/all/wows'
 
 	if (!realmUrl) {
-		throw new ReferenceError('Requested realm "' + realm + '" is not supported for this API')
+		throw new ReferenceError('Selected realm "' + realm + '" is not supported for this API. Use one of ' + getRealmsListing(REALMS))
 	}
 
 	Object.assign(this, {
@@ -181,12 +188,6 @@ function WorldOfWarships(realm){
 	})
 }
 
-WorldOfWarships.realms = {
-	'ru': 'api.worldofwarships.ru',
-	'eu': 'api.worldofwarships.eu',
-	'na': 'api.worldofwarships.com',
-	//'kr': 'api.worldofwarships.kr',
-	'asia': 'api.worldofwarships.asia'
-}
+WorldOfWarships.realms = REALMS
 
 module.exports = WorldOfWarships

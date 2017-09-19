@@ -1,10 +1,16 @@
 'use strict'
 
 var protocol = require('../utils/protocol.js')
+var getRealmsListing = require('../utils/get-realms-listing.js')
 var api = require('../services/api.js')
 var endpoint = api.endpoint
 var GET = api.METHOD.GET
 var POST = api.METHOD.POST
+
+var REALMS = {
+	'xbox': 'api-xbox-console.worldoftanks.com',
+	'ps4': 'api-ps4-console.worldoftanks.com'
+}
 
 function WorldOfTanksConsole(realm){
 	var realmUrl = WorldOfTanksConsole.realms[realm]
@@ -12,7 +18,7 @@ function WorldOfTanksConsole(realm){
 	var helpUrl = 'https://developers.wargaming.net/reference/all/wotx'
 
 	if (!realmUrl) {
-		throw new ReferenceError('Requested realm "' + realm + '" is not supported for this API')
+		throw new ReferenceError('Selected realm "' + realm + '" is not supported for this API. Use one of ' + getRealmsListing(REALMS))
 	}
 
 	Object.assign(this, {
@@ -178,9 +184,6 @@ function WorldOfTanksConsole(realm){
 	})
 }
 
-WorldOfTanksConsole.realms = {
-	'xbox': 'api-xbox-console.worldoftanks.com',
-	'ps4': 'api-ps4-console.worldoftanks.com'
-}
+WorldOfTanksConsole.realms = REALMS
 
 module.exports = WorldOfTanksConsole

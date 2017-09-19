@@ -1,10 +1,19 @@
 'use strict'
 
 var protocol = require('../utils/protocol.js')
+var getRealmsListing = require('../utils/get-realms-listing.js')
 var api = require('../services/api.js')
 var endpoint = api.endpoint
 var GET = api.METHOD.GET
 var POST = api.METHOD.POST
+
+var REALMS = {
+	'ru': 'api.worldoftanks.ru',
+	'eu': 'api.worldoftanks.eu',
+	'na': 'api.worldoftanks.com',
+	'kr': 'api.worldoftanks.kr',
+	'asia': 'api.worldoftanks.asia'
+}
 
 function WargamingNet(realm){
 	var realmUrl = WargamingNet.realms[realm]
@@ -12,7 +21,7 @@ function WargamingNet(realm){
 	var helpUrl = 'https://developers.wargaming.net/reference/all/wgn'
 
 	if (!realmUrl) {
-		throw new ReferenceError('Requested realm "' + realm + '" is not supported for this API')
+		throw new ReferenceError('Selected realm "' + realm + '" is not supported for this API. Use one of ' + getRealmsListing(REALMS))
 	}
 
 	Object.assign(this, {
@@ -125,12 +134,6 @@ function WargamingNet(realm){
 	})
 }
 
-WargamingNet.realms = {
-	'ru': 'api.worldoftanks.ru',
-	'eu': 'api.worldoftanks.eu',
-	'na': 'api.worldoftanks.com',
-	'kr': 'api.worldoftanks.kr',
-	'asia': 'api.worldoftanks.asia'
-}
+WargamingNet.realms = REALMS
 
 module.exports = WargamingNet

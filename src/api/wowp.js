@@ -1,10 +1,17 @@
 'use strict'
 
 var protocol = require('../utils/protocol.js')
+var getRealmsListing = require('../utils/get-realms-listing.js')
 var api = require('../services/api.js')
 var endpoint = api.endpoint
-var GET = api.METHOD.GET
-var POST = api.METHOD.POST
+
+var REALMS = {
+	'ru': 'api.worldofwarplanes.ru',
+	'eu': 'api.worldofwarplanes.eu',
+	'na': 'api.worldofwarplanes.com'
+	//'kr': 'api.worldofwarplanes.kr',
+	//'asia': 'api.worldofwarplanes.asia'
+}
 
 function WorldOfWarplanes(realm) {
 	var realmUrl = WorldOfWarplanes.realms[realm]
@@ -12,7 +19,7 @@ function WorldOfWarplanes(realm) {
 	var helpUrl = 'https://developers.wargaming.net/reference/all/wowp'
 
 	if (!realmUrl) {
-		throw new ReferenceError('Requested realm "' + realm + '" is not supported for this API')
+		throw new ReferenceError('Selected realm "' + realm + '" is not supported for this API. Use one of ' + getRealmsListing(REALMS))
 	}
 
 	Object.assign(this, {
@@ -109,12 +116,6 @@ function WorldOfWarplanes(realm) {
 	})
 }
 
-WorldOfWarplanes.realms = {
-	'ru': 'api.worldofwarplanes.ru',
-	'eu': 'api.worldofwarplanes.eu',
-	'na': 'api.worldofwarplanes.com'
-	//'kr': 'api.worldofwarplanes.kr',
-	//'asia': 'api.worldofwarplanes.asia'
-}
+WorldOfWarplanes.realms = REALMS
 
 module.exports = WorldOfWarplanes
