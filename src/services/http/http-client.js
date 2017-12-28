@@ -3,7 +3,7 @@
 var url = require('../../utils/url.js')
 var xhr = require('./xhr.adapter.js')
 var http = require('./http.adapter.js')
-var nodejsEnv = Boolean(require('url').parse)
+var nodejsEnv = (typeof process !== 'undefined' && !process.browser)
 var request = nodejsEnv ? http : xhr
 
 var service = {

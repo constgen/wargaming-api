@@ -1,10 +1,10 @@
 {
-	"name": "wg",
+	"name": "wargaming-api",
 	"description": "",
 	"version": "0.4.0",
 	"license": "MIT",
 	"author": "Constantine Genchevsky",
-	"main": "src/index.js",
+	"main": "dist/wg.js",
 	"repository": {
 		"type": "git",
 		"url": ""
@@ -14,6 +14,8 @@
 	],
 	"dependencies": {	},
 	"devDependencies": {
+		"neutrino": "8.0.14",
+		"neutrino-umd": "*",
 		"grunt": "1.0.1",
 		"grunt-contrib-jshint": "1.0.0",
 		"grunt-contrib-watch": "1.0.0",
@@ -26,9 +28,10 @@
 		"grunt-systemjs-bundler": "git://github.com/constgen/grunt-systemjs-bundler#0.5.0"
 	},
 	"scripts": {
+		"build": "neutrino build",
+		"start": "neutrino start",
 		"test": "grunt test",
-		"start": "node demo/demo.js",
-		"build": "grunt build",
+		"start-node": "node demo/demo.js",
 		"code": "grunt code",
 		"live": "grunt live"
 	},
