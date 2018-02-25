@@ -6,11 +6,11 @@ var api = require('../services/api.js')
 var endpoint = api.endpoint
 
 var REALMS = {
-	'ru': 'api.wotblitz.ru',
-	'eu': 'api.wotblitz.eu',
-	'na': 'api.wotblitz.com',
+	ru: 'api.wotblitz.ru',
+	eu: 'api.wotblitz.eu',
+	na: 'api.wotblitz.com',
 	//'kr': 'api.wotblitz.kr',
-	'asia': 'api.wotblitz.asia'
+	asia: 'api.wotblitz.asia'
 }
 
 function WorldOfTanksBlitz(realm) {

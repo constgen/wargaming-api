@@ -6,9 +6,9 @@ var api = require('../services/api.js')
 var endpoint = api.endpoint
 
 var REALMS = {
-	'ru': 'api.worldofwarplanes.ru',
-	'eu': 'api.worldofwarplanes.eu',
-	'na': 'api.worldofwarplanes.com'
+	ru: 'api.worldofwarplanes.ru',
+	eu: 'api.worldofwarplanes.eu',
+	na: 'api.worldofwarplanes.com'
 	//'kr': 'api.worldofwarplanes.kr',
 	//'asia': 'api.worldofwarplanes.asia'
 }

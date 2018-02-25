@@ -1,4 +1,5 @@
 'use strict'
+/* eslint-disable no-console */
 
 var http = require('../services/http/http-client.js')
 var ApiError = require('./api-error.js')

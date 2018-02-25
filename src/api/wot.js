@@ -4,15 +4,14 @@ var protocol = require('../utils/protocol.js')
 var RealmReferenceError = require('../types/realm-reference-error.js')
 var api = require('../services/api.js')
 var endpoint = api.endpoint
-var GET = api.METHOD.GET
 var POST = api.METHOD.POST
 
 var REALMS = {
-	'ru': 'api.worldoftanks.ru',
-	'eu': 'api.worldoftanks.eu',
-	'na': 'api.worldoftanks.com',
-	'kr': 'api.worldoftanks.kr',
-	'asia': 'api.worldoftanks.asia'
+	ru: 'api.worldoftanks.ru',
+	eu: 'api.worldoftanks.eu',
+	na: 'api.worldoftanks.com',
+	kr: 'api.worldoftanks.kr',
+	asia: 'api.worldoftanks.asia'
 }
 
 function WorldOfTanks(realm){
@@ -57,17 +56,20 @@ function WorldOfTanks(realm){
 			login: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
-				url: 'auth/login'
+				url: 'auth/login',
+				method: POST
 			}),
 			logout: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
-				url: 'auth/logout'
+				url: 'auth/logout',
+				method: POST
 			}),
 			prolongate: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
-				url: 'auth/prolongate'
+				url: 'auth/prolongate',
+				method: POST
 			})
 		},
 		stronghold: {
@@ -189,9 +191,6 @@ function WorldOfTanks(realm){
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
 				url: 'encyclopedia/vehicleprofile'
-			}),
-			vehicleprofiles: endpoint({
-				url: 'encyclopedia/vehicleprofiles'
 			}),
 			tankengines: endpoint({
 				deprecated: true,

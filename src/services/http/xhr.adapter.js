@@ -15,7 +15,7 @@ module.exports = function(options){
 		xhr.setRequestHeader(header, headers[header])
 	}
 	xhr.responseType = 'text'
-	
+
 	return new Promise(function(resolve, reject){
 		xhr.onreadystatechange = function () {
 			if (this.readyState !== this.DONE) return
@@ -51,5 +51,3 @@ module.exports = function(options){
 		}
 	})
 }
-
-

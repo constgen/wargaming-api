@@ -1,11 +1,12 @@
-'use strict'
+'use strict';
 
 module.exports = {
   use: [
-    ['neutrino-umd', {
+    'neutrino-preset-eslintrc',
+    ['neutrino-preset-umd', {
       library: 'wg',
-      name: 'wg'
-    }]
-    //   '@neutrinojs/jest'
+      filename: 'wg'
+    }],
+    // '@neutrinojs/jest'
   ]
 }

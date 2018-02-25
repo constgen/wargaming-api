@@ -1,6 +1,6 @@
 'use strict'
 
 describe('Module', function () {
-	require('./spec/index.js')
+	require('./specs/index.js')
 })
-'format cjs'
+

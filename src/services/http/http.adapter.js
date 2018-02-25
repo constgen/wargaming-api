@@ -31,7 +31,7 @@ module.exports = function httpAdapter(options) {
 	return new Promise(function (resolve, reject) {
 		var request = http.request(httpOptions, function (response) {
 			var body = []
-			
+
 			switch (response.statusCode){
 				case 301:
 				case 302:
@@ -48,7 +48,7 @@ module.exports = function httpAdapter(options) {
 					response.on('data', function (chunk) {
 						//progress
 						body.push(chunk)
-					});
+					})
 					response.on('end', function () {
 						//done
 						resolve({
@@ -72,6 +72,3 @@ module.exports = function httpAdapter(options) {
 		request.end()
 	})
 }
-
-
-

@@ -4,12 +4,11 @@ var protocol = require('../utils/protocol.js')
 var RealmReferenceError = require('../types/realm-reference-error.js')
 var api = require('../services/api.js')
 var endpoint = api.endpoint
-var GET = api.METHOD.GET
 var POST = api.METHOD.POST
 
 var REALMS = {
-	'xbox': 'api-xbox-console.worldoftanks.com',
-	'ps4': 'api-ps4-console.worldoftanks.com'
+	xbox: 'api-xbox-console.worldoftanks.com',
+	ps4: 'api-ps4-console.worldoftanks.com'
 }
 
 function WorldOfTanksConsole(realm){
@@ -59,17 +58,20 @@ function WorldOfTanksConsole(realm){
 			login: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
-				url: 'auth/login'
+				url: 'auth/login',
+				method: POST
 			}),
 			logout: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
-				url: 'auth/logout'
+				url: 'auth/logout',
+				method: POST
 			}),
 			prolongate: endpoint({
 				baseUrl: apiUrl,
 				baseHelpUrl: helpUrl,
-				url: 'auth/prolongate'
+				url: 'auth/prolongate',
+				method: POST
 			})
 		},
 		clans: {

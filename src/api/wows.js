@@ -6,11 +6,11 @@ var api = require('../services/api.js')
 var endpoint = api.endpoint
 
 var REALMS = {
-	'ru': 'api.worldofwarships.ru',
-	'eu': 'api.worldofwarships.eu',
-	'na': 'api.worldofwarships.com',
+	ru: 'api.worldofwarships.ru',
+	eu: 'api.worldofwarships.eu',
+	na: 'api.worldofwarships.com',
 	//'kr': 'api.worldofwarships.kr',
-	'asia': 'api.worldofwarships.asia'
+	asia: 'api.worldofwarships.asia'
 }
 
 function WorldOfWarships(realm){

@@ -10,7 +10,7 @@ var service = {
 	METHOD: {
 		GET: 'GET',
 		POST: 'POST'
-  	},
+	},
 	/**
 	 * HTTP request.
 	 * @param {Object} options={} - Request config.
@@ -25,7 +25,7 @@ var service = {
 			'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
 			'If-None-Match': ETag
 		}
-	
+
 		switch (true) {
 			case !data:
 				payload = null
@@ -36,15 +36,15 @@ var service = {
 			default:
 				requestUrl += url.format({ query: data })
 		}
-	
+
 		request({
-			method: method, 
-			url: requestUrl, 
-			headers: headers, 
+			method: method,
+			url: requestUrl,
+			headers: headers,
 			body: payload
 		}).then(function (response) {
 			var body = response.body ? JSON.parse(response.body) : undefined
-			
+
 			if (body) {
 				body.ETag = response.headers.ETag
 			}

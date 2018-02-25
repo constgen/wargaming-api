@@ -14,26 +14,17 @@
 	],
 	"dependencies": {	},
 	"devDependencies": {
-		"neutrino": "8.0.14",
-		"neutrino-umd": "*",
-		"grunt": "1.0.1",
-		"grunt-contrib-jshint": "1.0.0",
-		"grunt-contrib-watch": "1.0.0",
-		"grunt-jsdoc": "1.0.0",
-		"grunt-contrib-clean": "1.0.0",
-		"jasmine-core": "*",
-		"grunt-contrib-jasmine": "1.0.3",
-		"systemjs": "*",
-		"systemjs-plugin-json": "0.1.0",
-		"grunt-systemjs-bundler": "git://github.com/constgen/grunt-systemjs-bundler#0.5.0"
+		"neutrino": "8.1.1",
+		"neutrino-preset-umd": "latest",
+		"neutrino-preset-eslintrc": "latest",
+		"@neutrinojs/jest": "8.1.1"
 	},
 	"scripts": {
 		"build": "neutrino build",
 		"start": "neutrino start",
-		"test": "grunt test",
+		"test": "neutrino test",
 		"start-node": "node demo/demo.js",
-		"code": "grunt code",
-		"live": "grunt live"
+		"lint": "neutrino lint"
 	},
 	"engines": {
 		"node": ">=0.10.0",
